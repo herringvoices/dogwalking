@@ -82,3 +82,13 @@ body {
   background-color: var(--accent);
   border-color: var(--lightest-blue);
 }
+.primary-box{
+  background-color: var(--blue-blue);
+  border-radius: 8px;
+}
+.dark-list{
+  background-color: var(--darkest-blue);
+  border-radius: 8px;
+  color: var(--lightest-blue);
+  font-size: 1.5em;
+}

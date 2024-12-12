@@ -118,7 +118,13 @@ app.MapGet(
     "/api/dogs",
     () =>
     {
-        return new { Message = "Welcome to DeShawn's Dog Walking" };
+        return dogs.Select(item => new DogDTO
+        {
+            Id = item.Id,
+            Name = item.Name,
+            CityId = item.CityId,
+            WalkerId = item.WalkerId,
+        });
     }
 );
 
