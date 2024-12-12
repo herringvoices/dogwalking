@@ -128,4 +128,33 @@ app.MapGet(
     }
 );
 
+app.MapGet(
+    "/api/walkers",
+    () =>
+    {
+        return walkers.Select(item => new WalkerDTO { Id = item.Id, Name = item.Name });
+    }
+);
+
+app.MapGet(
+    "/api/cities",
+    () =>
+    {
+        return cities.Select(item => new CityDTO { Id = item.Id, Name = item.Name });
+    }
+);
+
+app.MapGet(
+    "/api/walkercities",
+    () =>
+    {
+        return walkerCities.Select(item => new WalkerCityDTO
+        {
+            Id = item.Id,
+            CityId = item.CityId,
+            WalkerId = item.WalkerId,
+        });
+    }
+);
+
 app.Run();
