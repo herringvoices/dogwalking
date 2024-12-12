@@ -1,3 +1,11 @@
+:root {
+  --lightest-blue: #d4eef9;
+  --accent: #ffa929;
+  --blue-blue: #27aae1;
+  --dark-blue: #006989;
+  --darkest-blue: #0a2a38;
+}
+
 .App {
   text-align: center;
 }
@@ -28,6 +36,10 @@
   color: #61dafb;
 }
 
+body {
+  background-color: var(--darkest-blue);
+}
+
 @keyframes App-logo-spin {
   from {
     transform: rotate(0deg);
@@ -35,4 +47,37 @@
   to {
     transform: rotate(360deg);
   }
+}
+
+.navbar {
+  background-color: var(--blue-blue);
+}
+
+.navbar a {
+  color: var(--lightest-blue);
+  transition: transform 0.25s ease;
+  font-weight: bold;
+  font-size: 1.5em;
+  margin: 0 0.5em;
+}
+
+.navbar a:hover {
+  color: var(--accent);
+  transform: scale(1.25);
+  text-shadow: 0 0 5px var(--dark-blue);
+}
+
+.navbar a:active {
+  color: var(--lightest-blue);
+  text-shadow: 0 0 5px var(--lightest-blue);
+}
+
+.navbar-toggler {
+  background-color: var(--lightest-blue);
+  border: none;
+}
+
+.navbar-toggler:hover {
+  background-color: var(--accent);
+  border-color: var(--lightest-blue);
 }
