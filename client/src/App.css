@@ -38,6 +38,7 @@
 
 body {
   background-color: var(--darkest-blue);
+  color: var(--darkest-blue);
 }
 
 @keyframes App-logo-spin {
