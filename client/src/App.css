@@ -36,6 +36,10 @@
   color: #61dafb;
 }
 
+body {
+  background-color: var(--darkest-blue);
+}
+
 @keyframes App-logo-spin {
   from {
     transform: rotate(0deg);
@@ -66,4 +70,14 @@
 .navbar a:active {
   color: var(--lightest-blue);
   text-shadow: 0 0 5px var(--lightest-blue);
+}
+
+.navbar-toggler {
+  background-color: var(--lightest-blue);
+  border: none;
+}
+
+.navbar-toggler:hover {
+  background-color: var(--accent);
+  border-color: var(--lightest-blue);
 }
