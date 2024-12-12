@@ -78,15 +78,19 @@ body {
   border: none;
 }
 
+.col .text-light:hover {
+  color: var(--accent) !important;
+}
+
 .navbar-toggler:hover {
   background-color: var(--accent);
   border-color: var(--lightest-blue);
 }
-.primary-box{
+.primary-box {
   background-color: var(--blue-blue);
   border-radius: 8px;
 }
-.dark-list{
+.dark-list {
   background-color: var(--darkest-blue);
   border-radius: 8px;
   color: var(--lightest-blue);
