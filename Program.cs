@@ -187,6 +187,36 @@ app.MapPost(
     }
 );
 
+app.MapPost(
+    "/api/walkercities",
+    (WalkerCityDTO newWalkerCity) =>
+    {
+        // Create a new WalkerCity object from the received DTO
+        var walkerCity = new WalkerCity
+        {
+            Id = walkerCities.Max(wc => wc.Id) + 1, // Generate a new Id
+            WalkerId = newWalkerCity.WalkerId,
+            CityId = newWalkerCity.CityId,
+        };
+
+        // Add the new WalkerCity to the list
+        walkerCities.Add(walkerCity);
+
+        // Return the added WalkerCity as a WalkerCityDTO
+        return Results.Created(
+            $"/api/walkercities/{walkerCity.Id}",
+            new WalkerCityDTO
+            {
+                Id = walkerCity.Id,
+                WalkerId = walkerCity.WalkerId,
+                CityId = walkerCity.CityId,
+            }
+        );
+    }
+);
+
+//DELETE
+
 app.MapDelete(
     "/api/dogs/{dogId}",
     (int dogId) =>
@@ -226,6 +256,48 @@ app.MapDelete(
 
         // Return 204 No Content to indicate successful deletion
         return Results.NoContent();
+    }
+);
+
+app.MapDelete(
+    "/api/walkercities/{id}",
+    (int id) =>
+    {
+        // Find the WalkerCity object with the given Id
+        WalkerCity walkerCity = walkerCities.FirstOrDefault(wc => wc.Id == id);
+
+        if (walkerCity == null)
+        {
+            // If no matching object is found, return NotFound
+            return Results.NotFound($"WalkerCity with ID {id} not found.");
+        }
+
+        // Remove the WalkerCity object from the list
+        walkerCities.Remove(walkerCity);
+
+        // Return NoContent to indicate successful deletion
+        return Results.NoContent();
+    }
+);
+
+//PUT
+app.MapPut(
+    "/api/walkers/{id}",
+    (int id, WalkerDTO updatedWalker) =>
+    {
+        // Find the existing walker
+        Walker existingWalker = walkers.FirstOrDefault(w => w.Id == id);
+
+        if (existingWalker == null)
+        {
+            return Results.NotFound($"Walker with ID {id} not found.");
+        }
+
+        // Update the walker's properties
+        existingWalker.Name = updatedWalker.Name;
+
+        // Return the updated walker as a DTO
+        return Results.Ok(new WalkerDTO { Id = existingWalker.Id, Name = existingWalker.Name });
     }
 );
 
