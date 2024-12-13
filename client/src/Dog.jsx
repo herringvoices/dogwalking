@@ -1,6 +1,7 @@
 import { Button, Col, Row } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import { deleteDog } from "./Services/DogService";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 function DogItem({ dog, getAndSet }) {
   const handleDelete = async () => {
@@ -26,7 +27,7 @@ function DogItem({ dog, getAndSet }) {
         </Col>
         <Col xs={1}>
           <Button className="btn btn-warning fw-bold" onClick={handleDelete}>
-            X
+            <FontAwesomeIcon icon="fa-solid fa-trash-can" />
           </Button>
         </Col>
       </Row>

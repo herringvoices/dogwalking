@@ -15,10 +15,8 @@ List<Walker> walkers = new List<Walker>
 List<City> cities = new List<City>
 {
     new City { Id = 1, Name = "New York" },
-    new City { Id = 2, Name = "Los Angeles" },
-    new City { Id = 3, Name = "Chicago" },
-    new City { Id = 4, Name = "Houston" },
-    new City { Id = 5, Name = "Phoenix" },
+    new City { Id = 2, Name = "Old York" },
+    new City { Id = 3, Name = "Mid York" },
 };
 
 // List of Dogs
@@ -85,13 +83,13 @@ List<WalkerCity> walkerCities = new List<WalkerCity>
     new WalkerCity
     {
         Id = 4,
-        CityId = 4,
+        CityId = 1,
         WalkerId = 4,
     },
     new WalkerCity
     {
         Id = 5,
-        CityId = 5,
+        CityId = 2,
         WalkerId = 5,
     },
 };
