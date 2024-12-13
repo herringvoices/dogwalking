@@ -1,7 +1,17 @@
 import { Button, Col, Row } from "react-bootstrap";
 import { Link } from "react-router-dom";
+import { deleteDog } from "./Services/DogService";
 
-function DogItem({ dog }) {
+function DogItem({ dog, getAndSet }) {
+  const handleDelete = async () => {
+    try {
+      await deleteDog(dog.id);
+      getAndSet();
+    } catch (error) {
+      console.error(`Failed to delete dog with ID ${dog.id}:`, error);
+    }
+  };
+
   return (
     <Col xs={10} className="dark-list mx-auto my-2 p-3">
       <Row className="d-flex justify-content-around">
@@ -15,7 +25,9 @@ function DogItem({ dog }) {
           </Link>
         </Col>
         <Col xs={1}>
-          <Button className="btn btn-warning fw-bold">X</Button>
+          <Button className="btn btn-warning fw-bold" onClick={handleDelete}>
+            X
+          </Button>
         </Col>
       </Row>
     </Col>

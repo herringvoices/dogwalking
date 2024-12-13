@@ -189,4 +189,25 @@ app.MapPost(
     }
 );
 
+app.MapDelete(
+    "/api/dogs/{dogId}",
+    (int dogId) =>
+    {
+        // Find the dog by ID
+        Dog dog = dogs.FirstOrDefault(d => d.Id == dogId);
+
+        if (dog == null)
+        {
+            // Return 404 Not Found if the dog doesn't exist
+            return Results.NotFound($"Dog with ID {dogId} not found.");
+        }
+
+        // Remove the dog from the list
+        dogs.Remove(dog);
+
+        // Return 204 No Content to indicate successful deletion
+        return Results.NoContent();
+    }
+);
+
 app.Run();
