@@ -29,3 +29,26 @@ export async function deleteWalker(walkerId) {
     throw error; // Re-throw the error for further handling
   }
 }
+
+export async function updateWalker(walkerId, updatedWalker) {
+  try {
+    const response = await fetch(`/api/walkers/${walkerId}`, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(updatedWalker),
+    });
+
+    if (!response.ok) {
+      throw new Error(`HTTP error! status: ${response.status}`);
+    }
+
+    const walker = await response.json();
+    console.log(`Walker with ID ${walkerId} updated successfully:`, walker);
+    return walker; // Return the updated walker
+  } catch (error) {
+    console.error(`Error updating walker with ID ${walkerId}:`, error);
+    throw error;
+  }
+}

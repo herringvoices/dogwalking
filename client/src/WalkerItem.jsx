@@ -19,7 +19,7 @@ function WalkerItem({ walker, getAndSet }) {
         <Col>
           <Link
             className="text-light"
-            to={`/walkerdetails/${walker.id}`} // Adjusted link to walker details
+            to={`./edit/${walker.id}`} // Adjusted link to walker details
             style={{ textDecoration: "none" }}
           >
             {walker.name} {/* Display walker name */}
