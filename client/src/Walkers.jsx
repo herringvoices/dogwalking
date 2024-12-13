@@ -46,6 +46,7 @@ function Walkers() {
   return (
     <Container className="primary-box mt-4">
       <Col className="p-3">
+        <h2>Walkers</h2>
         <CitiesDropdown
           className="my-3"
           cities={cities}
