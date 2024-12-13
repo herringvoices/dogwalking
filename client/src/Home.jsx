@@ -7,8 +7,12 @@ import DogItem from "./Dog";
 function Home() {
   const [dogs, setDogs] = useState([]);
 
-  useEffect(() => {
+  const getAndSetDogs = () =>{
     getAllDogs().then(setDogs);
+  }
+
+  useEffect(() => {
+    getAndSetDogs()
   }, []);
 
   return (
@@ -16,7 +20,7 @@ function Home() {
       <Col>
         <Row>
           {dogs.map((dog) => (
-            <DogItem dog={dog} key={dog.id} />
+            <DogItem dog={dog} key={dog.id} getAndSet={getAndSetDogs} />
           ))}
         </Row>
         <Row>

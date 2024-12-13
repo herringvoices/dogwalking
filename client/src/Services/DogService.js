@@ -33,3 +33,21 @@ export async function addDog(dog) {
     throw error;
   }
 }
+
+export async function deleteDog(dogId) {
+  try {
+    const response = await fetch(`/api/dogs/${dogId}`, {
+      method: "DELETE",
+    });
+
+    if (!response.ok) {
+      throw new Error(`HTTP error! status: ${response.status}`);
+    }
+
+    console.log(`Dog with ID ${dogId} deleted successfully.`);
+    return true; // Indicate success
+  } catch (error) {
+    console.error(`Error deleting dog with ID ${dogId}:`, error);
+    throw error; // Re-throw the error for further handling
+  }
+}
