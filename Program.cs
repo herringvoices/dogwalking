@@ -157,4 +157,36 @@ app.MapGet(
     }
 );
 
+//POST
+
+app.MapPost(
+    "/api/dogs",
+    (DogDTO newDog) =>
+    {
+        // Create a new Dog object from the received DogDTO
+        var dog = new Dog
+        {
+            Id = dogs.Max(d => d.Id) + 1, // Generate a new Id
+            Name = newDog.Name,
+            CityId = newDog.CityId,
+            WalkerId = newDog.WalkerId,
+        };
+
+        // Add the new Dog to the list
+        dogs.Add(dog);
+
+        // Return the added Dog as a DogDTO
+        return Results.Created(
+            $"/api/dogs/{dog.Id}",
+            new DogDTO
+            {
+                Id = dog.Id,
+                Name = dog.Name,
+                CityId = dog.CityId,
+                WalkerId = dog.WalkerId,
+            }
+        );
+    }
+);
+
 app.Run();
