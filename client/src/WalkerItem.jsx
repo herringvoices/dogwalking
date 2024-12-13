@@ -1,17 +1,17 @@
 import { Button, Col, Row } from "react-bootstrap";
 import { Link } from "react-router-dom";
-// import { deleteWalker } from "./Services/WalkerService"; // Adjusted service for walkers
+import { deleteWalker } from "./Services/WalkerService"; // Adjusted service for walkers
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 function WalkerItem({ walker, getAndSet }) {
-  //   const handleDelete = async () => {
-  //     try {
-  //       await deleteWalker(walker.id); // Call the walker delete service
-  //       getAndSet(); // Refresh the list
-  //     } catch (error) {
-  //       console.error(`Failed to delete walker with ID ${walker.id}:`, error);
-  //     }
-  //   };
+  const handleDelete = async () => {
+    try {
+      await deleteWalker(walker.id); // Call the walker delete service
+      getAndSet(); // Refresh the list
+    } catch (error) {
+      console.error(`Failed to delete walker with ID ${walker.id}:`, error);
+    }
+  };
 
   return (
     <Col xs={9} className="dark-list mx-auto my-3 p-3">
@@ -35,10 +35,7 @@ function WalkerItem({ walker, getAndSet }) {
           </Button>
         </Col>
         <Col xs={1}>
-          <Button
-            className="btn btn-warning fw-bold"
-            //   onClick={handleDelete}
-          >
+          <Button className="btn btn-warning fw-bold" onClick={handleDelete}>
             <FontAwesomeIcon icon="fa-solid fa-trash-can" />
             {/* Trash can icon */}
           </Button>

@@ -208,4 +208,25 @@ app.MapDelete(
     }
 );
 
+app.MapDelete(
+    "/api/walkers/{walkerId}",
+    (int walkerId) =>
+    {
+        // Find the walker by ID
+        Walker walker = walkers.FirstOrDefault(w => w.Id == walkerId);
+
+        if (walker == null)
+        {
+            // Return 404 Not Found if the walker doesn't exist
+            return Results.NotFound($"Walker with ID {walkerId} not found.");
+        }
+
+        // Remove the walker from the list
+        walkers.Remove(walker);
+
+        // Return 204 No Content to indicate successful deletion
+        return Results.NoContent();
+    }
+);
+
 app.Run();
