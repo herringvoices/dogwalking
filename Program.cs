@@ -301,4 +301,34 @@ app.MapPut(
     }
 );
 
+app.MapPut(
+    "/api/dogs/{id}",
+    (int id, DogDTO updatedDog) =>
+    {
+        // Find the existing dog
+        Dog existingDog = dogs.FirstOrDefault(d => d.Id == id);
+
+        if (existingDog == null)
+        {
+            return Results.NotFound($"Dog with ID {id} not found.");
+        }
+
+        // Update the dog's properties
+        existingDog.Name = updatedDog.Name;
+        existingDog.CityId = updatedDog.CityId;
+        existingDog.WalkerId = updatedDog.WalkerId;
+
+        // Return the updated dog as a DTO
+        return Results.Ok(
+            new DogDTO
+            {
+                Id = existingDog.Id,
+                Name = existingDog.Name,
+                CityId = existingDog.CityId,
+                WalkerId = existingDog.WalkerId,
+            }
+        );
+    }
+);
+
 app.Run();

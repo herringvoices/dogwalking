@@ -96,3 +96,20 @@ body {
   color: var(--lightest-blue);
   font-size: 1.5em;
 }
+
+.modal-content {
+  background-color: var(--darkest-blue);
+  color: var(--accent);
+  border: solid; 
+  box-shadow: 0 0 10px var(--accent)
+}
+
+.modal-header {
+  border-bottom: solid; 
+}
+.modal-footer {
+  border-top: solid; 
+}
+.modal .btn-close {
+    filter: brightness(0) invert(1); /* Example for white color */
+}

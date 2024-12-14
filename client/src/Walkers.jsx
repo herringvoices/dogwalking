@@ -6,6 +6,7 @@ import WalkerItem from "./WalkerItem"; // Import the WalkerItem component
 import CitiesDropdown from "./CitiesDropdown";
 import { getAllCities } from "./Services/CityService";
 import { getAllWalkerCities } from "./Services/WalkerCityService";
+import { getAllDogs } from "./Services/DogService";
 
 function Walkers() {
   const [walkers, setWalkers] = useState([]);
@@ -13,6 +14,17 @@ function Walkers() {
   const [cityId, setCityId] = useState(0);
   const [cities, setCities] = useState([]);
   const [walkerCities, setWalkerCities] = useState([]);
+  const [dogSelection, setDogSelection] = useState([]);
+  const [dogs, setDogs] = useState([]);
+
+  const getAndSetDogs = () => {
+    getAllDogs().then(setDogs);
+  };
+
+  useEffect(() => {
+    getAndSetDogs();
+  }, []);
+
   const getAndSetWalkers = () => {
     getAllWalkers().then(setWalkers);
   };
@@ -51,6 +63,7 @@ function Walkers() {
           className="my-3"
           cities={cities}
           setCityId={setCityId}
+          walkerCities={walkerCities}
         />
       </Col>
       <Col>
@@ -60,6 +73,9 @@ function Walkers() {
               walker={walker}
               key={walker.id}
               getAndSet={getAndSetWalkers}
+              setDogSelection={setDogSelection}
+              dogs={dogs}
+              walkerCities={walkerCities}
             />
           ))}
         </Row>
