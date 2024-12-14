@@ -51,3 +51,26 @@ export async function deleteDog(dogId) {
     throw error; // Re-throw the error for further handling
   }
 }
+
+export async function updateDog(dogId, updatedDog) {
+  try {
+    const response = await fetch(`/api/dogs/${dogId}`, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(updatedDog),
+    });
+
+    if (!response.ok) {
+      throw new Error(`HTTP error! status: ${response.status}`);
+    }
+
+    const updatedDogData = await response.json();
+    console.log(`Dog with ID ${dogId} updated successfully:`, updatedDogData);
+    return updatedDogData;
+  } catch (error) {
+    console.error(`Error updating dog with ID ${dogId}:`, error);
+    throw error;
+  }
+}
