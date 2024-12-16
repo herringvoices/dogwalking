@@ -14,9 +14,9 @@ function DogItem({ dog, getAndSet }) {
   };
 
   return (
-    <Col xs={10} className="dark-list mx-auto my-2 p-3">
-      <Row className="d-flex justify-content-around">
-        <Col>
+    <Col xs={8} className="dark-list mx-auto my-2 p-3">
+      <Row className="d-flex justify-content-between">
+        <Col xs={6}>
           <Link
             className="text-light"
             to={`/dogdetails/${dog.id}`}
@@ -25,7 +25,7 @@ function DogItem({ dog, getAndSet }) {
             {dog.name}
           </Link>
         </Col>
-        <Col xs={1}>
+        <Col xs={1} className="mx-auto">
           <Button className="btn btn-warning fw-bold" onClick={handleDelete}>
             <FontAwesomeIcon icon="fa-solid fa-trash-can" />
           </Button>

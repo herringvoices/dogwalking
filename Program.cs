@@ -214,6 +214,27 @@ app.MapPost(
         );
     }
 );
+app.MapPost(
+    "/api/cities",
+    (CityDTO newCity) =>
+    {
+        // Create a new City object from the received DTO
+        var city = new City
+        {
+            Id = cities.Max(c => c.Id) + 1, // Generate a new Id
+            Name = newCity.Name,
+        };
+
+        // Add the new City to the list
+        cities.Add(city);
+
+        // Return the added City as a CityDTO
+        return Results.Created(
+            $"/api/cities/{city.Id}",
+            new CityDTO { Id = city.Id, Name = city.Name }
+        );
+    }
+);
 
 //DELETE
 
@@ -253,6 +274,27 @@ app.MapDelete(
 
         // Remove the walker from the list
         walkers.Remove(walker);
+
+        // Return 204 No Content to indicate successful deletion
+        return Results.NoContent();
+    }
+);
+
+app.MapDelete(
+    "/api/cities/{cityId}",
+    (int cityId) =>
+    {
+        // Find the city by ID
+        City city = cities.FirstOrDefault(c => c.Id == cityId);
+
+        if (city == null)
+        {
+            // Return 404 Not Found if the city doesn't exist
+            return Results.NotFound($"City with ID {cityId} not found.");
+        }
+
+        // Remove the city from the list
+        cities.Remove(city);
 
         // Return 204 No Content to indicate successful deletion
         return Results.NoContent();
